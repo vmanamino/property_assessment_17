@@ -13,6 +13,9 @@ def get_data():
         return err
 
 if (get_data().code == 200):
+    response = get_data()
+    data = json.loads(response.read())
+    print(data['success'])
     
 else:
     print(get_data().code)

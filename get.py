@@ -12,11 +12,12 @@ def get_data():
     except urllib2.HTTPError as err:
         return err
 
-if (get_data().code == 200):
-    response = get_data()
-    data = json.loads(response.read())
-    print(data['success'])
-    
-else:
-    print(get_data().code)
+def parse_data():
+    if (get_data().code == 200):
+        response = get_data()
+        data = json.loads(response.read())
+        print(len(data['result']['records']))
+        
+    else:
+        print(get_data().code)
     

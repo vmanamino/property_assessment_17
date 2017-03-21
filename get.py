@@ -13,14 +13,20 @@ def get_data():
     except urllib2.HTTPError as err:
         return err
 
-def parse_data(first, last):
+def parse_data(first=0, last=0):
     if (get_data().code == 200):
         the_set = []
         response = get_data()
         data = json.loads(response.read())
-        for record in data['result']['records'][int(first):int(last)]:
-            print(record['PID'])
+        if first and last:
+            for row in data['result']['records'][int(first):int(last)]:
+                parcel_record = Record(row)
+                the_set.append(parcel_record)
+            return the_set
+        else:
+            return get_data().code
+        # return the_set
         
     else:
-        print(get_data().code)
+        return get_data().code
     

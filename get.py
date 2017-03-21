@@ -1,4 +1,5 @@
 import json
+from record import Record
 import urllib2
 import urllib
 
@@ -12,11 +13,13 @@ def get_data():
     except urllib2.HTTPError as err:
         return err
 
-def parse_data():
+def parse_data(first, last):
     if (get_data().code == 200):
+        the_set = []
         response = get_data()
         data = json.loads(response.read())
-        print(len(data['result']['records']))
+        for record in data['result']['records'][int(first):int(last)]:
+            print(record['PID'])
         
     else:
         print(get_data().code)

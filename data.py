@@ -1,3 +1,4 @@
 import get
+import sys
 
-print(get.parse_data())
+get.parse_data(sys.argv[1], sys.argv[2])

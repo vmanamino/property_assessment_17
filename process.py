@@ -27,9 +27,9 @@ for line in data:
         cmid = columns[2]
         zipid = columns[7]
         columns[0] = pid+"_"
-        columns[1] = repr(gid)
-        columns[2] = repr(cmid)
-        columns[7] = repr(zipid)
+        columns[1] = gid+"_"
+        columns[2] = cmid+"_"
+        columns[7] = zipid+"_"
         
         for column in columns:
             out.write("%s\t" % (column))

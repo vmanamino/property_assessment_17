@@ -4,6 +4,8 @@ out = open('assessed.txt', 'w')
 
 count = 0
 for line in data:
+    processed = []
+    columns = []
     
     if count == 0:
         column_count = 1
@@ -17,19 +19,21 @@ for line in data:
                 # print('newline')
                 out.write('%s\n' % (column))
             column_count += 1
-            print(column_count)
-    processed = []
-    columns = []
-    if count > 0 and count < 2:
+            # print(column_count)
+    
+    else:
         columns = line.split('|')
         pid = columns[0]
-        gid = columns[1]
-        cmid = columns[2]
+        cmid = columns[1]
+        gisid = columns[2]
         zipid = columns[7]
+        mailzipid = columns[15]
         columns[0] = pid+"_"
-        columns[1] = gid+"_"
-        columns[2] = cmid+"_"
+        if cmid:
+            columns[1] = cmid+"_"
+        columns[2] = gisid+"_"
         columns[7] = zipid+"_"
+        columns[15] = mailzipid+"_"
         
         for column in columns:
             out.write("%s\t" % (column))

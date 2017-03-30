@@ -1,5 +1,5 @@
-data = open('assess_17.txt').read().splitlines()
-out = open('assessed.txt', 'w')
+data = open('property-assessment-2016.csv').read().splitlines()
+out = open('assessed-16.txt', 'w')
 
 
 count = 0
@@ -9,7 +9,7 @@ for line in data:
     
     if count == 0:
         column_count = 1
-        columns = line.split('|')
+        columns = line.split(',')
         for column in columns:
             print(len(columns))
             if column_count < len(columns):
@@ -21,8 +21,8 @@ for line in data:
             column_count += 1
             # print(column_count)
     
-    else:
-        columns = line.split('|')
+    if count == 2:
+        columns = line.split(',')
         pid = columns[0]
         cmid = columns[1]
         gisid = columns[2]
@@ -36,7 +36,7 @@ for line in data:
         columns[15] = mailzipid+"_"
         
         for column in columns:
-            out.write("%s\t" % (column))
+            out.write("%s|" % (column))
         out.write("\n")
     
     

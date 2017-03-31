@@ -5,7 +5,7 @@ import urllib
 
 def get_data():
     
-    url = 'https://data.boston.gov/api/action/datastore_search?resource_id=9a4b1173-89ac-4a01-93e7-661eeb81ba16'
+    url = 'https://data.boston.gov/api/action/datastore_search?resource_id=062fc6fa-b5ff-4270-86cf-202225e40858'
     request = urllib2.Request(url)
     
     try:

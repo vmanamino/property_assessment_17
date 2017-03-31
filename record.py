@@ -1,14 +1,29 @@
+import decimal
+import re
 
 class Record():
     def __init__(self, data):
-        self.pid = data['PID']
-        self.address_one = 'none'
-        if not data['MAIL_ADDRESS']:
-            self.address_one = data['ST_NAME']
+        self.pid = data['PID'][:-1]
+        # self.address_one = ''
+        if data['ST_NUM']:
+            self.address_one = data['ST_NUM']
+            self.address_one += " "+data['ST_NAME']
         else:
-            self.address_one = data['MAIL_ADDRESS']
-        self.address_zip = data['MAIL_ZIPCODE']
-        self.address = self.address_one + ", "+self.address_zip.zfill(5)
+            self.address_one = data['ST_NAME']
+        if data['ST_NAME_SUF']:
+            self.address_one += " "+data['ST_NAME_SUF']
+        self.address_zip = data['ZIPCODE'][:-1]
+        if not data['UNIT_NUM']:
+            self.address = self.address_one + ", "+self.address_zip
+        else:
+            unit = ''
+            if data['UNIT_NUM'][:3] == 'APT':
+                unit = re.sub('APT', 'Apt', data['UNIT_NUM'])
+                self.address = self.address_one + " "+unit+", "+self.address_zip
+            else:
+                designation = 'Apt'
+                self.address = self.address_one + " "+designation+" "+data['UNIT_NUM']+", "+self.address_zip
+            
         self.owner = data['OWNER']
         self.land_use = 'none'
         if (data['LU']):
@@ -50,6 +65,6 @@ class Record():
         self.lot_size = data['LAND_SF']
         self.living_area = data['LIVING_AREA']
         self.land_value = data['AV_LAND']
-        self.building_value = data['AV_BLDG']
         self.total_value = data['AV_TOTAL']
-        
+        gross_tax = data['GROSS_TAX']
+        self.gross_tax = int(gross_tax)/100.00

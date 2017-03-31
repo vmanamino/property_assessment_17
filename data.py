@@ -11,6 +11,6 @@ if len(sys.argv) == 3:
     for s in the_set:
         output.write('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n' % (s.pid, s.address_one
         , s.address_zip, s.address, s.owner, s.land_use, s.lot_size, s.living_area
-        , s.total_value, s.land_value, s.building_value ))
+        , s.total_value, s.land_value, s.gross_tax ))
 else:
     print(get.parse_data())

@@ -65,6 +65,7 @@ class Record():
         self.lot_size = data['LAND_SF']
         self.living_area = data['LIVING_AREA']
         self.land_value = data['AV_LAND']
+        self.building_value = data['AV_BLDG']
         self.total_value = data['AV_TOTAL']
         gross_tax = data['GROSS_TAX']
         self.gross_tax = int(gross_tax)/100.00

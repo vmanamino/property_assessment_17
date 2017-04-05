@@ -4,6 +4,7 @@ import re
 class Record():
     def __init__(self, data):
         self.pid = data['PID'][:-1]
+        self.gid = data['GIS_ID'][:-1]
         # self.address_one = ''
         if data['ST_NUM']:
             self.address_one = data['ST_NUM']

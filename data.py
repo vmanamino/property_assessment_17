@@ -10,7 +10,7 @@ output.write('Parcel ID\tGIS ID\tAddress\tZipcode\tFull address\tOwner\tLand use
 offset = 0
 total = get.total(offset)
 count = 0
-while offset < 100:
+while offset < total:
     the_set = get.parse_data(offset)
     for s in the_set:
         count += 1
